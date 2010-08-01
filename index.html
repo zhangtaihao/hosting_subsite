@@ -9,25 +9,27 @@
 	
 	<style type="text/css">
 		body {
+  		font-size: 0.9em;
   		margin-top: 1.0em;
-  		background-color: #1a6fef;
-		  font-family: "Helvetica,Arial,FreeSans";
-  		color: #ffffff;
+  		background-color: #ffffff;
+		  font-family: Verdana, Arial, sans-serif;
+  		color: #000000;
     }
     #container {
       margin: 0 auto;
       width: 700px;
     }
-		h1 { font-size: 3.8em; color: #e59010; margin-bottom: 3px; }
+		h1 { font-size: 3.0em; color: #1a6fef; margin-bottom: 3px; margin-top: 12px; }
 		h1 .small { font-size: 0.4em; }
 		h1 a { text-decoration: none }
-		h2 { font-size: 1.5em; color: #e59010; }
-    h3 { text-align: center; color: #e59010; }
-    a { color: #e59010; }
+		h2 { font-size: 1.5em; color: #1a6fef; }
+    h3 { text-align: center; color: #1a6fef; }
+    a { color: #1a6fef; }
     .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
     .download { float: right; }
-		pre { background: #000; color: #fff; padding: 15px;}
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+		pre { background: #eee; color: #000; padding: 15px;}
+    hr { border: 0; width: 80%; border-bottom: 1px solid #999;}
+    code, kbd, tt { font-size: 1.2em; }
     .footer { text-align:center; padding-top:30px; font-style: italic; }
 	</style>
 	
@@ -45,27 +47,30 @@
         <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
     </div>
 
-    <h1><a href="http://github.com/zhangtaihao/hosting_subsite">Aegir hosted subsite</a>
-      <span class="small">by <a href="http://github.com/zhangtaihao">zhangtaihao</a></span></h1>
+    <h1><a href="http://github.com/zhangtaihao/hosting_subsite">Aegir hosted subsite</a></h1>
 
     <div class="description">
       Hostmaster-managed Drupal sites hosted under subfolders.
     </div>
 
-    <p>This module plugs into the hosting module under hostmaster install profile for the Drupal provisioning system Aegir. The module aims to address issues raised in:
+    <p>This module plugs into the hosting module under hostmaster install profile for the Drupal provisioning system Aegir. The module aims to address issues raised in:</p>
 
-http://groups.drupal.org/node/19006
+    <ul><li><a href="http://groups.drupal.org/node/19006">http://groups.drupal.org/node/19006</a></li></ul>
 
-The mechanisms in this module are relatively naive. The module takes advantage of the existing Aegir architecture and does not alter the basic behaviour of the Site feature (nor can it). Instead, it does two things:
+    <p>The mechanisms in this module are relatively naive. The module takes advantage of the existing Aegir architecture and does not alter the basic behaviour of the Site feature (nor can it). Instead, it does three things:</p>
 
- - Adds subsite management to the site edit form.
- - Hook onto provision_apache_vhost_config to add an Apache Alias and database connection parameters to the parent vhost for the subsite.
- - Fire hosting tasks when subsite relationship changes occur.
+    <ul>
+      <li>Adds subsite management to the site edit form.</li>
+      <li>Hook onto <code>provision_apache_vhost_config</code> to add an Apache Alias and database connection parameters to the parent vhost for the subsite.</li>
+      <li>Fire hosting tasks when subsite relationship changes occur.</li>
+    </ul>
 
-The subsite management mentioned above is merely a means for pairing sites with paths. As far as the module is concerned, it does not realise the pattern of the subsite's domain name other than assume that the user has named the site in such a way that Drupal loads the settings.php of that site correctly. An example situation demonstrate a potential limit to this mechanism is <code>www.example.com/au</code> being the same as <code>www.example.com.au</code> due to the way Drupal searches the sites folder for settings. As Aegir prevents the creation of two sites with identical domain names, it is impossible to even host the two variants on separate platforms.
+    <p>The subsite management mentioned above is merely a means for pairing sites with paths. As far as the module is concerned, it does not realise the pattern of the subsite's domain name other than assume that the user has named the site in such a way that Drupal loads the settings.php of that site correctly. An example situation demonstrate a potential limit to this mechanism is <code>www.example.com/au</code> being the same as <code>www.example.com.au</code> due to the way Drupal searches the sites folder for settings. As Aegir prevents the creation of two sites with identical domain names, it is impossible to even host the two variants on separate platforms.</p>
 
-This module is currently being developed on Aegir 0.4-alpha7. Presumably, it will work on any Aegir 0.4 release, although this claim has not been tested. Support for Aegir 0.3 is not confirmed, although the more adventurous may wish to try.</p><h2>Dependencies</h2>
-<p>Aegir 0.3</p>
+    <p>This module is currently being developed on Aegir 0.4-alpha7. Presumably, it will work on any Aegir 0.4 release, although this claim has not been tested. Support for Aegir 0.3 is not confirmed, although the more adventurous may wish to try.</p>
+
+<h2>Dependencies</h2>
+<p>Aegir 0.4</p>
 <h2>Install</h2>
 <p>Deploy module under the <code>sites/all/modules</code> directory inside the Hostmaster installation.</p>
 <h2>License</h2>
@@ -73,7 +78,8 @@ This module is currently being developed on Aegir 0.4-alpha7. Presumably, it wil
 <h2>Authors</h2>
 <p>Taihao Zhang</p>
 <h2>Contact</h2>
-<p>(zhang.taihao@gmail.com)<br/></p>
+<p>(zhang.taihao@gmail.com)
+<br/></p>
 
 
     <h2>Download</h2>
