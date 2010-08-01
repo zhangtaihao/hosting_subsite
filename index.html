@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+	<title>zhangtaihao/hosting_subsite @ GitHub</title>
+	
+	<style type="text/css">
+		body {
+  		margin-top: 1.0em;
+  		background-color: #1a6fef;
+		  font-family: "Helvetica,Arial,FreeSans";
+  		color: #ffffff;
+    }
+    #container {
+      margin: 0 auto;
+      width: 700px;
+    }
+		h1 { font-size: 3.8em; color: #e59010; margin-bottom: 3px; }
+		h1 .small { font-size: 0.4em; }
+		h1 a { text-decoration: none }
+		h2 { font-size: 1.5em; color: #e59010; }
+    h3 { text-align: center; color: #e59010; }
+    a { color: #e59010; }
+    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
+    .download { float: right; }
+		pre { background: #000; color: #fff; padding: 15px;}
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    .footer { text-align:center; padding-top:30px; font-style: italic; }
+	</style>
+	
+</head>
+
+<body>
+  <a href="http://github.com/zhangtaihao/hosting_subsite"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
+
+  <div id="container">
+
+    <div class="download">
+      <a href="http://github.com/zhangtaihao/hosting_subsite/zipball/master">
+        <img border="0" width="90" src="http://github.com/images/modules/download/zip.png"></a>
+      <a href="http://github.com/zhangtaihao/hosting_subsite/tarball/master">
+        <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
+    </div>
+
+    <h1><a href="http://github.com/zhangtaihao/hosting_subsite">Aegir hosted subsite</a>
+      <span class="small">by <a href="http://github.com/zhangtaihao">zhangtaihao</a></span></h1>
+
+    <div class="description">
+      Hostmaster-managed Drupal sites hosted under subfolders.
+    </div>
+
+    <p>This module plugs into the hosting module under hostmaster install profile for the Drupal provisioning system Aegir. The module aims to address issues raised in:
+
+http://groups.drupal.org/node/19006
+
+The mechanisms in this module are relatively naive. The module takes advantage of the existing Aegir architecture and does not alter the basic behaviour of the Site feature (nor can it). Instead, it does two things:
+
+ - Adds subsite management to the site edit form.
+ - Hook onto provision_apache_vhost_config to add an Apache Alias and database connection parameters to the parent vhost for the subsite.
+ - Fire hosting tasks when subsite relationship changes occur.
+
+The subsite management mentioned above is merely a means for pairing sites with paths. As far as the module is concerned, it does not realise the pattern of the subsite's domain name other than assume that the user has named the site in such a way that Drupal loads the settings.php of that site correctly. An example situation demonstrate a potential limit to this mechanism is <code>www.example.com/au</code> being the same as <code>www.example.com.au</code> due to the way Drupal searches the sites folder for settings. As Aegir prevents the creation of two sites with identical domain names, it is impossible to even host the two variants on separate platforms.
+
+This module is currently being developed on Aegir 0.4-alpha7. Presumably, it will work on any Aegir 0.4 release, although this claim has not been tested. Support for Aegir 0.3 is not confirmed, although the more adventurous may wish to try.</p><h2>Dependencies</h2>
+<p>Aegir 0.3</p>
+<h2>Install</h2>
+<p>Deploy module under the <code>sites/all/modules</code> directory inside the Hostmaster installation.</p>
+<h2>License</h2>
+<p>GPLv2</p>
+<h2>Authors</h2>
+<p>Taihao Zhang</p>
+<h2>Contact</h2>
+<p>(zhang.taihao@gmail.com)<br/></p>
+
+
+    <h2>Download</h2>
+    <p>
+      You can download this project in either
+      <a href="http://github.com/zhangtaihao/hosting_subsite/zipball/master">zip</a> or
+      <a href="http://github.com/zhangtaihao/hosting_subsite/tarball/master">tar</a> formats.
+    </p>
+    <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
+      by running:
+      <pre>$ git clone git://github.com/zhangtaihao/hosting_subsite</pre>
+    </p>
+
+    <div class="footer">
+      get the source code on GitHub : <a href="http://github.com/zhangtaihao/hosting_subsite">zhangtaihao/hosting_subsite</a>
+    </div>
+
+  </div>
+
+  
+</body>
+</html>
