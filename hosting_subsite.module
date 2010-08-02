@@ -1,32 +1,42 @@
 <?php
 /**
  * Hostmaster-managed subsites.
+ *
  * This module links sites together with paths, allowing a site to be nested
  * under another hostmaster-managed site.
  *
  * @author Taihao Zhang (zhang.taihao@gmail.com)
+ * @license GPLv2. See LICENSE.
  */
 
 /**
- * Form controls for linking sites in site edit form.
+ * Implementation of hook_perm.
  */
-function hosting_subsite_form_hosting_site_form_alter(&$form, &$form_state) {
-  $type = node_get_types('type', $node);
-
-  $form['hosting_subsite'] = array(
-    '#title' => t('Subsites'),
-    '#type' => 'fieldset',
-    '#tree' => TRUE,
-  );
-  $form['hosting_subsite'] = array(
-  
-  );
-
+function hosting_subsite_perm() {
+  return array('administer subsite');
 }
 
 /**
- * Implementation of hook_nodeapi().
+ * Implementation of hook_menu.
+ */
+function hosting_subsite_menu() {
+  // Add tab to Site node view
+  $items['node/%hosting_site_node/subsites'] = array(
+    'title' => t('Subsites'),
+    'type' => MENU_LOCAL_TASK,
+    'page callback' => 'hosting_subsite_subsites',
+    'page arguments' => array(1),
+    'file' => 'hosting_subsite.subsites.inc',
+    'access' => array('administer subsite'),
+    'weight' => 5,
+  );
+
+  return $items;
+}
+
+/**
+ * Implementation of hook_nodeapi.
  */
 function hosting_subsite_nodeapi(&$node, $op, $teaser, $page) {
-  
+
 }

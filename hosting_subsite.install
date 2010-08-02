@@ -1,30 +1,24 @@
 <?php
+/**
+ * Module installer
+ *
+ * @author Taihao Zhang (zhang.taihao@gmail.com)
+ * @license GPLv2. See LICENSE.
+ */
 
 /**
  * Implementation of hook_schema().
  */
 function hosting_subsite_schema() {
-  $schema['hosting_subsite'] = array(
+  $schema['hosting_subsite_link'] = array(
     'fields' => array(
-      'vid' => array(
+      'parent' => array(
         'type' => 'int',
         'unsigned' => TRUE,
         'not null' => TRUE,
         'default' => 0,
       ),
-      'nid' => array(
-        'type' => 'int',
-        'unsigned' => TRUE,
-        'not null' => TRUE,
-        'default' => 0,
-      ),
-      'parent_vid' => array(
-        'type' => 'int',
-        'unsigned' => TRUE,
-        'not null' => TRUE,
-        'default' => 0,
-      ),
-      'parent_nid' => array(
+      'subsite' => array(
         'type' => 'int',
         'unsigned' => TRUE,
         'not null' => TRUE,
@@ -36,7 +30,7 @@ function hosting_subsite_schema() {
         'default' => '',
       ),
     ),
-    'primary key' => array('vid', 'parent_vid'),
+    'primary key' => array('parent', 'subsite'),
   );
 
   return $schema;
@@ -44,10 +38,10 @@ function hosting_subsite_schema() {
 
 function hosting_subsite_install() {
   // Create table.
-  drupal_install_schema('hosting_subsite');
+  drupal_install_schema('hosting_subsite_link');
 }
 
 function hosting_subsite_uninstall() {
   // Remove table.
-  drupal_uninstall_schema('hosting_subsite');
+  drupal_uninstall_schema('hosting_subsite_link');
 }

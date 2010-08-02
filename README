@@ -1,0 +1,37 @@
+==================================================
+=  Aegir hosted subsite
+==================================================
+
+This module plugs into the hosting module under hostmaster install profile
+for the Drupal provisioning system Aegir. The module aims to address issues
+raised in <http://groups.drupal.org/node/19006>.
+
+The mechanisms in this module are relatively naive. The module takes advantage
+of the existing Aegir architecture and does not alter the basic behaviour of
+the Site feature (nor can it). Instead, it does three things:
+
+ - Adds subsite management to the site edit form.
+ - Hook onto provision_apache_vhost_config to add an Apache alias and database
+   connection parameters to the parent vhost for the subsite.
+ - Fire hosting tasks when subsite relationship changes occur.
+
+
+ LIMITATIONS
+--------------------------------------------------
+
+The subsite management mentioned above is merely a means for pairing sites with
+paths. As far as the module is concerned, it does not realise the pattern of
+the subsite's domain name other than assume that the user has named the site in
+such a way that Drupal loads the settings.php of that site correctly. An
+example situation demonstrate a potential limit to this mechanism is
+www.example.com/au being the same as www.example.com.au due to the way Drupal
+searches the sites folder for settings. As Aegir prevents the creation of two
+sites with identical domain names, it is impossible to even host the two
+variants on separate platforms.
+
+
+ LICENSE
+--------------------------------------------------
+
+This module is released under GPLv2. For the full license, see included file
+LICENSE in the directory.

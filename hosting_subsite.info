@@ -2,5 +2,5 @@ name = Subsites
 description = Allow hostmaster manage hosted subsites under domain sites.
 package = Hosting
 dependencies[] = hosting
-dependencies[] = hosting_site
+dependencies[] = modalframe
 core = 6.x
