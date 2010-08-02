@@ -21,7 +21,7 @@ function hosting_subsite_perm() {
  */
 function hosting_subsite_menu() {
   // Add tab to Site node view
-  $items['node/%hosting_site_node/subsites'] = array(
+  $items['node/%hosting_task_site/subsites'] = array(
     'title' => t('Subsites'),
     'type' => MENU_LOCAL_TASK,
     'page callback' => 'hosting_subsite_subsites',
@@ -29,6 +29,24 @@ function hosting_subsite_menu() {
     'file' => 'hosting_subsite.subsites.inc',
     'access' => array('administer subsite'),
     'weight' => 5,
+  );
+  $items['node/%hosting_task_site/subsites/%hosting_task_site/edit'] = array(
+    'title' => t('Subsites'),
+    'type' => MENU_LOCAL_TASK,
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('hosting_subsite_edit_form', 1, 3),
+    'file' => 'hosting_subsite.subsites.inc',
+    'access' => array('administer subsite'),
+    'weight' => 5,
+  );
+  // Autocomplete for listing potential sites to select as subsite
+  $items['hosting_subsite/autocomplete/edit_subsite/%/%hosting_task_site'] = array(
+    'title' => 'autocomplete edit subsite',
+    'type' => MENU_CALLBACK,
+    'page callback' => '_hosting_subsite_autocomplete_edit_subsite',
+    'page arguments' => array(4),
+    'file' => 'hosting_subsite.subsites.inc',
+    'access' => array('administer subsite'),
   );
 
   return $items;
