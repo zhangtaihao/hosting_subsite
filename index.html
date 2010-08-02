@@ -37,13 +37,19 @@
 
     <ul>
       <li>Adds subsite management to the site edit form.</li>
-      <li>Hook onto <code>provision_apache_vhost_config</code> to add an Apache Alias and database connection parameters to the parent vhost for the subsite.</li>
+      <li>Hook onto <code>provision_apache_vhost_config</code> to add an Apache alias and database connection parameters to the parent vhost for the subsite.</li>
       <li>Fire hosting tasks when subsite relationship changes occur.</li>
     </ul>
 
     <p>The subsite management mentioned above is merely a means for pairing sites with paths. As far as the module is concerned, it does not realise the pattern of the subsite's domain name other than assume that the user has named the site in such a way that Drupal loads the settings.php of that site correctly. An example situation demonstrate a potential limit to this mechanism is <code>www.example.com/au</code> being the same as <code>www.example.com.au</code> due to the way Drupal searches the sites folder for settings. As Aegir prevents the creation of two sites with identical domain names, it is impossible to even host the two variants on separate platforms.</p>
 
     <p>This module is currently being developed on Aegir 0.4-alpha7. Presumably, it will work on any Aegir 0.4 release, although this claim has not been tested. Support for Aegir 0.3 is not confirmed, although the more adventurous may wish to try.</p>
+    
+    <h4>UPDATE 2010-08-02</h4>
+    <p>Aegir manages rewrite rules in platforms. Well, when I say &ldquo;manages&rdquo;, it actually imports the entire <code>.htaccess</code> file into the platform configuration. And then, it sticks <code>AllowOverride none</code> at the end.</p>
+    <p>Since platforms already manages directory configuration, all I need for this module to do is turn rewrite rules in the directory back on (i.e. within <code>.htaccess</code>) by using <code>AllowOverride FileInfo</code>. This should be sufficient for now.</p>
+    <p>Note that I haven't even bothered to import Aegir's custom config from modules. If we're speccing aliases to the same directory, we can't do a <code>RewriteBase</code>, and as of Aegir 0.4-alpha8 (even HEAD) those rewrites outputs start with a slash (which shouln't be there). So, shorthand file access is out, for the moment, at least until I decide symbolic links are better or Aegir no longer rewrites to root.</p>
+    <p>I hope the Aegir folks get wind of this and decide to roll in this proof of concept (essentially). That way we don't need to rely on workarounds that may not work on exotic Drupal platforms.</p>
 
 <h2>Dependencies</h2>
 <p>Aegir 0.4</p>
@@ -52,7 +58,7 @@
 <h2>License</h2>
 <p>GPLv2</p>
 <h2>Authors</h2>
-<p>Taihao Zhang (zhang.taihao@gmail.com)</p>
+<p>Taihao (Jason) Zhang - zhang.taihao (at) gmail (dot) com</p>
 
     <h2>Download</h2>
     <p>
