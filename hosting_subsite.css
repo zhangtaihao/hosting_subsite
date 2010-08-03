@@ -1,0 +1,29 @@
+/**
+ * CSS for module pages.
+ *
+ * @author Taihao Zhang (zhang.taihao@gmail.com)
+ * @license GPLv2. See LICENSE.
+ * @license http://www.gnu.org/licenses/gpl-2.0.txt
+ */
+
+#hosting-subsite-subsites {
+  margin-bottom: 3em;
+}
+
+a.hosting-subsite-button {
+  padding: 4px 10px;
+  margin: 0 4px;
+  text-align: center;
+  height: 20px;
+  border: 1px solid #888;
+  color: #666;
+  background: #ddd;
+  -moz-border-radius:3px;
+  -webkit-border-radius: 3px;
+}
+
+a.hosting-subsite-button:hover {
+  border-color: #333;
+  color: #222;
+  background: #eee;
+}

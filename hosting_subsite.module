@@ -30,21 +30,36 @@ function hosting_subsite_menu() {
     'access arguments' => array('administer subsites'),
     'weight' => 5,
   );
-  $items['node/%hosting_task_site/subsites/%hosting_task_site/edit'] = array(
-    'title' => t('Subsites'),
-    'type' => MENU_LOCAL_TASK,
+  $items['node/%hosting_task_site/subsites/add'] = array(
+    'title' => t('Add subsite'),
+    'type' => MENU_CALLBACK,
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('hosting_subsite_edit_form', 1, 3),
+    'page arguments' => array('hosting_subsite_add_form', 1),
     'file' => 'hosting_subsite.subsites.inc',
     'access arguments' => array('administer subsites'),
-    'weight' => 5,
+  );
+  $items['node/%hosting_task_site/subsites/edit/%hosting_task_site'] = array(
+    'title' => t('Edit subsite'),
+    'type' => MENU_CALLBACK,
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('hosting_subsite_edit_form', 1, 4),
+    'file' => 'hosting_subsite.subsites.inc',
+    'access arguments' => array('administer subsites'),
+  );
+  $items['node/%hosting_task_site/subsites/remove/%hosting_task_site'] = array(
+    'title' => t('Remove subsite'),
+    'type' => MENU_CALLBACK,
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('hosting_subsite_remove_form', 1, 4),
+    'file' => 'hosting_subsite.subsites.inc',
+    'access arguments' => array('administer subsites'),
   );
   // Autocomplete for listing potential sites to select as subsite
-  $items['hosting_subsite/autocomplete/edit_subsite/%/%hosting_task_site'] = array(
+  $items['hosting_subsite/autocomplete/edit_subsite/%hosting_task_site'] = array(
     'title' => 'autocomplete edit subsite',
     'type' => MENU_CALLBACK,
     'page callback' => '_hosting_subsite_autocomplete_edit_subsite',
-    'page arguments' => array(4),
+    'page arguments' => array(3),
     'file' => 'hosting_subsite.subsites.inc',
     'access arguments' => array('administer subsites'),
   );
