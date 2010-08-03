@@ -11,19 +11,19 @@
 }
 
 .hosting-subsite-notice {
-	font-style: italic;
-	display: block;
-	padding: 7px;
-	margin-bottom: 6px;
-	background: #F0F5FF;
-	color: #247;
-	border: 1px solid #A4B6DD;
+  font-style: italic;
+  display: block;
+  padding: 7px;
+  margin-bottom: 6px;
+  background: #F0F5FF;
+  color: #247;
+  border: 1px solid #A4B6DD;
 }
 
 .hosting-subsite-notice a {
-	font-weight: bold;
-	text-decoration: none;
-	border-bottom: 1px dashed;
+  font-weight: bold;
+  text-decoration: none;
+  border-bottom: 1px dashed;
 }
 
 a.hosting-subsite-button {
