@@ -13,7 +13,7 @@
  * Implementation of hook_perm.
  */
 function hosting_subsite_perm() {
-  return array('administer subsite');
+  return array('administer subsites');
 }
 
 /**
@@ -27,7 +27,7 @@ function hosting_subsite_menu() {
     'page callback' => 'hosting_subsite_subsites',
     'page arguments' => array(1),
     'file' => 'hosting_subsite.subsites.inc',
-    'access' => array('administer subsite'),
+    'access arguments' => array('administer subsites'),
     'weight' => 5,
   );
   $items['node/%hosting_task_site/subsites/%hosting_task_site/edit'] = array(
@@ -36,7 +36,7 @@ function hosting_subsite_menu() {
     'page callback' => 'drupal_get_form',
     'page arguments' => array('hosting_subsite_edit_form', 1, 3),
     'file' => 'hosting_subsite.subsites.inc',
-    'access' => array('administer subsite'),
+    'access arguments' => array('administer subsites'),
     'weight' => 5,
   );
   // Autocomplete for listing potential sites to select as subsite
@@ -46,7 +46,7 @@ function hosting_subsite_menu() {
     'page callback' => '_hosting_subsite_autocomplete_edit_subsite',
     'page arguments' => array(4),
     'file' => 'hosting_subsite.subsites.inc',
-    'access' => array('administer subsite'),
+    'access arguments' => array('administer subsites'),
   );
 
   return $items;
