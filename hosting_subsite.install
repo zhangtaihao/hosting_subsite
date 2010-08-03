@@ -38,10 +38,10 @@ function hosting_subsite_schema() {
 
 function hosting_subsite_install() {
   // Create table.
-  drupal_install_schema('hosting_subsite_link');
+  drupal_install_schema('hosting_subsite');
 }
 
 function hosting_subsite_uninstall() {
   // Remove table.
-  drupal_uninstall_schema('hosting_subsite_link');
+  drupal_uninstall_schema('hosting_subsite');
 }
