@@ -10,6 +10,10 @@
   margin-bottom: 3em;
 }
 
+ul.hosting-subsite-parent-list {
+  margin-left: 32px;
+}
+
 .hosting-subsite-notice {
   font-style: italic;
   display: block;

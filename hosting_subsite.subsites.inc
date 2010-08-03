@@ -30,8 +30,8 @@ function hosting_subsite_subsites($node) {
   }
   // Site is already a subsite. Forbid creation of subsites.
   if (count($parent_list) > 0) {
-    $output .= '<p>'.t('This site is already subsite as:').'</p>';
-    $output .= theme('item_list', $parent_list);
+    $output .= '<p>'.t('This site is a subsite under the following site locations:').'</p>';
+    $output .= theme('item_list', $parent_list, NULL, 'ul', array('class' => 'hosting-subsite-parent-list'));
     $output .= '<p>'.t('Subsites cannot be nested. Remove this subsite from all parent sites to link other sites as subsites.').'</p>';
     return $output;
   }
