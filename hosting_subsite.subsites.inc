@@ -22,7 +22,7 @@ function hosting_subsite_subsites($node) {
 
   // Look for parent sites
   $result = db_query("SELECT n.nid, n.title name, l.path
-      FROM {hosting_subsite_link} l JOIN {node} n ON l.parent = n.nid
+      FROM {hosting_subsite} l JOIN {node} n ON l.parent = n.nid
       WHERE subsite = %d", $node->nid);
   $parent_list = array();
   while ($site = db_fetch_object($result)) {
@@ -44,7 +44,7 @@ function hosting_subsite_subsites($node) {
 
   // Fetch subsites
   $result = db_query("SELECT n.nid, n.title name, l.path
-      FROM {hosting_subsite_link} l JOIN {node} n ON l.subsite = n.nid
+      FROM {hosting_subsite} l JOIN {node} n ON l.subsite = n.nid
       WHERE parent = %d", $node->nid);
 
   // Build table
@@ -119,7 +119,7 @@ function hosting_subsite_edit_form(&$form_state, $parent, $subsite = NULL) {
     $values['subsite'] = $subsite_name;
   }
   if (!isset($values['path'])) {
-    $values['path'] = db_result(db_query("SELECT path FROM {hosting_subsite_link}
+    $values['path'] = db_result(db_query("SELECT path FROM {hosting_subsite}
       WHERE parent = %d AND subsite = %d", $parent_nid, $subsite_nid));
   }
 
@@ -204,7 +204,7 @@ function hosting_subsite_edit_form_validate(&$form, &$form_state) {
   // Check the cleaned path is not already specified
   // (Precondition satisfied by now: given path does not conflict with
   // current subsite.)
-  elseif (db_result(db_query("SELECT * FROM {hosting_subsite_link}
+  elseif (db_result(db_query("SELECT * FROM {hosting_subsite}
               WHERE parent = %d AND subsite <> %d AND path = '%s'",
               $params['parent'], $subsite_old, $path))) {
     form_set_error('path', t('The specified path already exists under this parent site.'));
@@ -233,11 +233,11 @@ function hosting_subsite_edit_form_submit($form, $form_state) {
 
   // Execute query
   if ($subsite) {
-    db_query("UPDATE {hosting_subsite_link} SET subsite = %d, path = '%s'
+    db_query("UPDATE {hosting_subsite} SET subsite = %d, path = '%s'
         WHERE parent = %d AND subsite = %d",
         $subsite_new, $path_new, $parent, $subsite);
   } else {
-    db_query("INSERT INTO {hosting_subsite_link} (parent, subsite, path)
+    db_query("INSERT INTO {hosting_subsite} (parent, subsite, path)
         VALUES (%d, %d, '%s')",
         $parent, $subsite_new, $path_new);
   }
@@ -279,7 +279,7 @@ function hosting_subsite_remove_form(&$form_state, $parent, $subsite) {
 function hosting_subsite_remove_form_submit(&$form, &$form_state) {
   $params = $form_state['params'];
   $form_state['redirect'] = 'node/'.$params['parent'].'/subsites';
-  db_query("DELETE FROM {hosting_subsite_link} WHERE parent = %d AND subsite = %d",
+  db_query("DELETE FROM {hosting_subsite} WHERE parent = %d AND subsite = %d",
       $params['parent'], $params['subsite']);
   drupal_set_message(t('The subsite has been removed.'));
 
@@ -318,9 +318,9 @@ function _hosting_subsite_list_eligible_subsites($nid, $filter = '', $exact = FA
           -- Node is not...
           n.nid NOT IN (
             -- Subsite of given node
-            SELECT subsite FROM {hosting_subsite_link} WHERE parent = %d UNION
+            SELECT subsite FROM {hosting_subsite} WHERE parent = %d UNION
             -- Parent site (or given node)
-            SELECT parent FROM {hosting_subsite_link} UNION
+            SELECT parent FROM {hosting_subsite} UNION
             -- Given node
             SELECT %d) $filter_query
         ORDER BY n.title ASC",

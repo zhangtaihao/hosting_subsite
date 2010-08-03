@@ -10,7 +10,7 @@
  * Implementation of hook_schema().
  */
 function hosting_subsite_schema() {
-  $schema['hosting_subsite_link'] = array(
+  $schema['hosting_subsite'] = array(
     'fields' => array(
       'parent' => array(
         'type' => 'int',
