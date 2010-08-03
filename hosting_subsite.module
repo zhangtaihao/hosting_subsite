@@ -70,6 +70,16 @@ function hosting_subsite_menu() {
 /**
  * Implementation of hook_nodeapi.
  */
-function hosting_subsite_nodeapi(&$node, $op, $teaser, $page) {
-
+function hosting_subsite_nodeapi(&$node, $op, $a3, $a4) {
+  if ($node->type == 'site' && $op == 'view') {
+    $node->content['info']['subsites'] = array(
+      '#type' => 'item',
+      '#title' => t('Subsites'),
+      '#value' => db_result(db_query("SELECT COUNT(*) FROM
+          {hosting_subsite_link} l JOIN {hosting_site} s
+          WHERE l.parent = %d AND l.subsite = s.nid AND status <> %d",
+          $node->nid, HOSTING_SITE_DELETED)),
+      '#weight' => 10,
+    );
+  }
 }
