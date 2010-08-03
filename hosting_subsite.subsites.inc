@@ -36,11 +36,11 @@ function hosting_subsite_subsites($node) {
     return $output;
   }
 
-  $output .= '<p><em>';
+  $output .= '<div class="hosting-subsite-notice">';
   $output .= t('To apply any changes you have made, !verify.', array(
     '!verify' => l(t('verify this site'), 'node/'.$node->nid.'/site_verify'),
   ));
-  $output .= '</em></p>';
+  $output .= '</div>';
 
   // Fetch subsites
   $result = db_query("SELECT n.nid, n.title name, l.path
