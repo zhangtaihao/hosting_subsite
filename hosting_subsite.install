@@ -26,6 +26,7 @@ function hosting_subsite_schema() {
       ),
       'path' => array(
         'type' => 'varchar',
+        'length' => 255,
         'not null' => TRUE,
         'default' => '',
       ),
