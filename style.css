@@ -1,9 +1,10 @@
 body {
-  font-size: 0.8em;
+  font-size: 0.75em;
   margin-top: 1.0em;
   background-color: #ffffff;
   font-family: Verdana, Arial, sans-serif;
   color: #000000;
+  line-height: 1.5;
 }
 #container {
   margin: 0 auto;
@@ -20,5 +21,7 @@ a { color: #1a6fef; }
 .download { float: right; }
 pre { background: #eee; color: #000; padding: 15px;}
 hr { border: 0; width: 80%; border-bottom: 1px solid #999;}
-code, kbd, tt, pre { font-size: 1.2em; }
+code, kbd, tt, pre {font-size: 1.2em; padding: 0 3px 1px; margin: 2px 0; color: #333; border: 1px solid #ccc;}
+.github { padding: 10px; }
+.github .repo { padding: 10px; }
 .footer { text-align:center; padding-top:30px; font-style: italic; }
