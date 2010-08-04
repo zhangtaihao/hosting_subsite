@@ -15,6 +15,9 @@ the Site feature (nor can it). Instead, it does three things:
    connection parameters to the parent vhost for the subsite.
  - Fire hosting tasks when subsite relationship changes occur.
 
+There is a separate module to deploy with Provision, called provision_subsite.
+Use this module in conjunction with it.
+
 
  LIMITATIONS
 --------------------------------------------------
@@ -28,6 +31,13 @@ www.example.com/au being the same as www.example.com.au due to the way Drupal
 searches the sites folder for settings. As Aegir prevents the creation of two
 sites with identical domain names, it is impossible to even host the two
 variants on separate platforms.
+
+
+ INSTALLATION
+--------------------------------------------------
+
+Extract hosting_subsite into sites/all/modules under the Hostmaster directory.
+Extract provision_subsite into ~/.drush under the Aegir home directory.
 
 
  LICENSE
