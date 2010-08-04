@@ -1,0 +1,5 @@
+name = Subsites
+description = Allow hostmaster manage hosted subsites under domain sites.
+dependencies[] = provision_apache
+dependencies[] = drush
+core = 6.x
