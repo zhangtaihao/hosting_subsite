@@ -1,0 +1,19 @@
+==================================================
+=  Aegir hosted subsite - Provision plugin
+==================================================
+
+This plugin implements hook_provision_apache_vhost_config to inject subsite
+configuration. See the main module hosting_subsite for more information.
+
+
+ INSTALLATION
+--------------------------------------------------
+
+Extract provision_subsite into ~/.drush under the Aegir home directory.
+
+
+ LICENSE
+--------------------------------------------------
+
+This module is released under GPLv2. For the full license, see included file
+LICENSE in the directory.
